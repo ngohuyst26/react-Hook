@@ -5,27 +5,36 @@ import { useState } from 'react';
 
 
 function App() {
-  let [name, setName] = useState('Huy');
-  let [nameTest, setNameTest] = useState('');
+  // let [name, setName] = useState('Huy');
+  let [value, setValue] = useState("");
+  let [todos, setTodos] = useState([
+  ]);
+  
   const changName = (event) => {
-    setNameTest(event.target.value);
+    setValue(event.target.value);
   }
 
   const setTen = () => {
-    if(nameTest === ""){
-      setName('Huy');
-    }else{
-      setName(nameTest);
-    }
+    let todosAdd = { id: 1, title: value };
+    setTodos([...todos, todosAdd]);
   }
   return (
     <div className="App">
-      <Nav/>  
+      <Nav />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h1>Hello world with React and {name}! </h1>
-        <input type='text' value= {nameTest} onChange={(event) => changName(event)}/>
-        <button type='button' onClick={() => setTen() }>Change Name </button>
+        {/* <h1>Hello world with React and {name}! </h1> */}
+        <div className='todos'>
+          {todos.map(todo => {
+            console.log(todos);
+            return(
+            <li className='li-todo' key={todo.id}>{todo.title}</li>
+            )
+          })}
+          
+        </div>
+        <input type='text' value={value} onChange={(event) => changName(event)} />
+        <button type='button' onClick={() => setTen()}>Change Name </button>
       </header>
     </div>
   );
