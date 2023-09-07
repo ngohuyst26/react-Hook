@@ -1,4 +1,4 @@
-import "../views/css/Nav.css";
+import "../views/css/Nav.scss";
 
 const Nav = () => {
     return (
