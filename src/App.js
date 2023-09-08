@@ -2,37 +2,48 @@ import logo from './logo.svg';
 import './App.css';
 import Nav from './views/navbar';
 import { useState } from 'react';
-
+import Todo from './views/todo';
 
 function App() {
-  // let [name, setName] = useState('Huy');
   let [value, setValue] = useState("");
   let [todos, setTodos] = useState([
+    { id: "todo1", title: "Học bài", type: "huy" },
+    { id: "todo2", title: "Chơi Game", type: "Mai" },
+    { id: "todo3", title: "Xem Tik Tok", type: "Mai" },
+    { id: "todo4", title: "Xem Facebook", type: "huy" }
   ]);
-  
+
   const changName = (event) => {
     setValue(event.target.value);
   }
 
   const setTen = () => {
-    let todosAdd = { id: 1, title: value };
+    let todosAdd = { id: Math.floor((Math.random() * 100000) + 1), title: value };
     setTodos([...todos, todosAdd]);
   }
+
+  const handleDeleteTodos = (id) => {
+    let TodoDelete = todos;
+    TodoDelete = TodoDelete.filter(item => item.id !== id);
+    console.log(TodoDelete);
+    setTodos(TodoDelete);
+  }
+
   return (
     <div className="App">
-      <Nav />
       <header className="App-header">
+      <Nav />
         <img src={logo} className="App-logo" alt="logo" />
-        {/* <h1>Hello world with React and {name}! </h1> */}
-        <div className='todos'>
-          {todos.map(todo => {
-            console.log(todos);
-            return(
-            <li className='li-todo' key={todo.id}>{todo.title}</li>
-            )
-          })}
-          
-        </div>
+        <Todo
+          todos={todos}
+          title={`All Todo`}
+          TodoDelete = {handleDeleteTodos}
+        />
+        <Todo
+          todos={todos.filter(item => item.type === "huy")}
+          title={`Todo của Huy`}
+          TodoDelete = {handleDeleteTodos}
+        />
         <input type='text' value={value} onChange={(event) => changName(event)} />
         <button type='button' onClick={() => setTen()}>Change Name </button>
       </header>
