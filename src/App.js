@@ -3,6 +3,8 @@ import './App.css';
 import Nav from './views/navbar';
 import { useState } from 'react';
 import Todo from './views/todo';
+import User from './views/User';
+
 
 function App() {
   let [value, setValue] = useState("");
@@ -32,9 +34,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <Nav />
+      <Nav/>
         <img src={logo} className="App-logo" alt="logo" />
-        <Todo
+        {/* <div className='container'> */}
+        <User/>
+     
+        
+        {/* <Todo
           todos={todos}
           title={`All Todo`}
           TodoDelete = {handleDeleteTodos}
@@ -43,11 +49,12 @@ function App() {
           todos={todos.filter(item => item.type === "huy")}
           title={`Todo của Huy`}
           TodoDelete = {handleDeleteTodos}
-        />
-        <input type='text' value={value} onChange={(event) => changName(event)} />
-        <button type='button' onClick={() => setTen()}>Change Name </button>
+        /> */}
+        {/* <input type='text' value={value} onChange={(event) => changName(event)} />
+        <button type='button' onClick={() => setTen()}>Change Name </button> */}
       </header>
-    </div>
+
+    // </div>
   );
 }
 
