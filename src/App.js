@@ -4,6 +4,15 @@ import Nav from './views/navbar';
 import { useState } from 'react';
 import Todo from './views/todo';
 import User from './views/User';
+import CountDown from './views/countdown';
+import React from 'react';
+import Blog from './views/Blog';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+
 
 
 function App() {
@@ -31,30 +40,43 @@ function App() {
     setTodos(TodoDelete);
   }
 
-  return (
-    <div className="App">
-      <header className="App-header">
-      <Nav/>
-        <img src={logo} className="App-logo" alt="logo" />
-        {/* <div className='container'> */}
-        <User/>
-     
-        
-        {/* <Todo
-          todos={todos}
-          title={`All Todo`}
-          TodoDelete = {handleDeleteTodos}
-        />
-        <Todo
-          todos={todos.filter(item => item.type === "huy")}
-          title={`Todo của Huy`}
-          TodoDelete = {handleDeleteTodos}
-        /> */}
-        {/* <input type='text' value={value} onChange={(event) => changName(event)} />
-        <button type='button' onClick={() => setTen()}>Change Name </button> */}
-      </header>
+  const thongbao = () => {
+    alert("Hết thời gian");
+  }
 
-    // </div>
+  return (
+    <Router>
+      <div className="App">
+        <header className="App-header">
+        <div className='container'>
+          <Nav />
+          </div>
+          <img src={logo} className="App-logo" alt="logo" />
+        </header>
+        <Switch>
+          <Route path="/" exact>
+            <div className='container'>
+            <User />
+            </div>
+          </Route>
+          <Route path="/timer">
+            <CountDown thongbao={thongbao} />
+          </Route>
+          <Route path="/todos">
+            <Todo
+              todos={todos}
+              title={`All Todo`}
+              TodoDelete={handleDeleteTodos}
+            />
+            <input type='text' value={value} onChange={(event) => changName(event)} />
+            <button type='button' onClick={() => setTen()}>Change Name </button>
+          </Route>
+          <Route path="/blog" exact>
+            <Blog/>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

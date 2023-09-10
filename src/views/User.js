@@ -1,23 +1,11 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import Fetch from "./fetchData";
 
 
 const User = () => {
-    let [user, setUser] = useState([]);
-    let [loading, setLoading] = useState(true);
-    useEffect(async () => {
-        setTimeout( async () => {
-            let UserGet = await axios.get('http://universities.hipolabs.com/search?country=United+States');
-            setUser(UserGet.data);
-            setLoading(false);
-        }, 2000)
-    }, []);
-
-
-
+    let { data: NewData, loading } = Fetch('http://universities.hipolabs.com/search?country=Viet+Nam');
     return (
 
-        <table class="table table-hover table-bordered">
+        <table className="table table-hover table-bordered">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -27,11 +15,11 @@ const User = () => {
                 </tr>
             </thead>
             <tbody>
-                {user && user.length > 0 &&
-                    user.map((item, index) => {
+                {NewData && NewData.length > 0 &&
+                    NewData.map((item, index) => {
                         return (
-                            <tr>
-                                <th scope="row">{index + 1}</th>
+                            <tr key={index}>
+                                <th scope="row"  >{index + 1}</th>
                                 <td>{item.name}</td>
                                 <td>{item.web_pages[0]}</td>
                                 <td>{item.country}</td>
