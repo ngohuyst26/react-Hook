@@ -12,7 +12,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-
+import BlogDetail from './views/Blogetail';
 
 
 function App() {
@@ -73,6 +73,9 @@ function App() {
           </Route>
           <Route path="/blog" exact>
             <Blog/>
+          </Route>
+          <Route path="/blog/:id">
+            <BlogDetail/>
           </Route>
         </Switch>
       </div>

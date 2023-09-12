@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Blog = () => {
     let { data, loading } = Fetch(
-        "https://api.slingacademy.com/v1/sample-data/photos"
+        "https://api.slingacademy.com/v1/sample-data/photos?offset=0&limit=20"
     );
     console.log(data.photos);
     return (
