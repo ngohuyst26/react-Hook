@@ -13,6 +13,8 @@ import {
   Route
 } from "react-router-dom";
 import BlogDetail from './views/Blogetail';
+import AddBlog from './views/AddBlog';
+import YoutubeSearch from './views/YoutubeSearch';
 
 
 function App() {
@@ -74,8 +76,14 @@ function App() {
           <Route path="/blog" exact>
             <Blog/>
           </Route>
-          <Route path="/blog/:id">
+          <Route path="/blog/:id" exact>
             <BlogDetail/>
+          </Route>
+          <Route path="/addblog">
+            <AddBlog/>
+          </Route>
+          <Route path="/youtube-search">
+            <YoutubeSearch/>
           </Route>
         </Switch>
       </div>
