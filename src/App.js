@@ -15,7 +15,7 @@ import {
 import BlogDetail from './views/Blogetail';
 import AddBlog from './views/AddBlog';
 import YoutubeSearch from './views/YoutubeSearch';
-
+import NotFoundError from './views/NotFound';
 
 function App() {
   let [value, setValue] = useState("");
@@ -84,6 +84,9 @@ function App() {
           </Route>
           <Route path="/youtube-search">
             <YoutubeSearch/>
+          </Route>
+          <Route path="*" >
+            <NotFoundError/>
           </Route>
         </Switch>
       </div>

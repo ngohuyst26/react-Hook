@@ -53,7 +53,7 @@ const YoutubeSearch = () => {
                             < >
                             <div className="container-yt" key={index} >
                                 <div className="left" >
-                                    <iframe width="420" height="250" title="YouTube video player" className="iframe" src={`https://www.youtube.com/embed/${item.id}`}>
+                                    <iframe width="420" height="250" title="YouTube video player" allowFullScreen className="iframe" src={`https://www.youtube.com/embed/${item.id}`}>
                                     </iframe>
                                 </div>
                                 <div className="right"  >
