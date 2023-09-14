@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./css/YoutubeSearch.scss"
 import moment from "moment";
 import axios from "axios";
-
+import 'moment/locale/vi'
 
 const YoutubeSearch = () => {
     const [search, setSearch] = useState('');
@@ -30,7 +30,7 @@ const YoutubeSearch = () => {
                 video.title = item.snippet.title;
                 video.description = item.snippet.description;
                 video.createdAt = item.snippet.publishedAt
-                return(
+                return (
                     result.push(video)
                 )
             })
@@ -50,7 +50,7 @@ const YoutubeSearch = () => {
                 {dataSearch && dataSearch.length > 0 &&
                     dataSearch.map((item, index) => {
                         return (
-                            < >
+
                             <div className="container-yt" key={index} >
                                 <div className="left" >
                                     <iframe width="420" height="250" title="YouTube video player" allowFullScreen className="iframe" src={`https://www.youtube.com/embed/${item.id}`}>
@@ -61,7 +61,7 @@ const YoutubeSearch = () => {
                                         <h5 className="content">{item.title}</h5>
                                     </div>
                                     <div className="creatAt">
-                                        Ngày đăng tải: {moment(item.createdAt).format('MMMM Do YYYY, h:mm:ss a')}
+                                        Ngày đăng tải: {moment(item.createdAt,"YYYYMMDD").locale('vi').fromNow()}
                                     </div>
                                     <div className="author">
                                         Tác giả: {item.channel}
@@ -70,8 +70,8 @@ const YoutubeSearch = () => {
                                         {item.description}
                                     </div>
                                 </div>
-                                </div>
-                            </>
+                            </div>
+
                         )
                     })
                 }
